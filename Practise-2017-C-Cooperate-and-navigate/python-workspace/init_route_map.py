@@ -3,7 +3,7 @@
 
 #init route map of the four road by mileposts
 from pyecharts import Line
-
+from pyecharts import Line3D
 
 class cross_point:
     def __init__(self, x=0, y=0, self_num=0, target_num=0):
@@ -61,10 +61,34 @@ for line in pos_data.splitlines():
 
 #Init Route Map
 
-attr = ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
-v1 = [5, 20, 36, 10, 10, 100]
-v2 = [55, 60, 16, 20, 15, 80]
-line = Line("折线图示例")
-line.add("商家A", attr, v1, mark_point=["average"])
-line.add("商家B", attr, v2, is_smooth=True, mark_line=["max", "average"])
-line.render()
+# line = Line("折线图示例")
+# x_axis_values_5 = [pos[0] for pos in road_5_points]
+# y_axis_values_5 = [pos[1] for pos in road_5_points]
+# line.add("route 5", x_axis_values_5,y_axis_values_5,yaxis_type='value')
+# x_axis_values_90 = [pos[0] for pos in road_90_points]
+# y_axis_values_90 = [pos[1] for pos in road_90_points]
+# line.add("route 90", x_axis_values_90,y_axis_values_90,yaxis_type='value')
+# x_axis_values_405 = [pos[0] for pos in road_405_points]
+# y_axis_values_405 = [pos[1] for pos in road_405_points]
+# line.add("route 405", x_axis_values_405,y_axis_values_405,yaxis_type='value')
+# x_axis_values_520 = [pos[0] for pos in road_520_points]
+# y_axis_values_520 = [pos[1] for pos in road_520_points]
+# line.add("route 520", x_axis_values_520,y_axis_values_520,yaxis_type='value')
+
+# line.render()
+
+for point in road_5_points:
+    point.append(1)
+for point in road_90_points:
+    point.append(1)
+for point in road_405_points:
+    point.append(1)
+for point in road_520_points:
+    point.append(1)
+line3d = Line3D("3D 折线图示例")
+line3d.add("5", road_5_points,visual_range_color=['#313695'])
+line3d.add("90", road_90_points)
+line3d.add("405", road_405_points)
+line3d.add("520", road_520_points)
+
+line3d.render('3d_route_map.html')
