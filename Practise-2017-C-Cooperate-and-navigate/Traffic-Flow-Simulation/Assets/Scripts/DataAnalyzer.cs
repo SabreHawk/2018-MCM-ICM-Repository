@@ -1,38 +1,39 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
-public class DataAnalzyer{
-	public static DataAnalzyer Instance;
+
+public class DataAnalyzer: MonoBehaviour {
+    public static DataAnalyzer Instance;
     public List<float> mailpost_5 = new List<float>();
-    List<float> mailpost_90 = new List<float>();
-    List<float> mailpost_405 = new List<float>();
-    List<float> mailpost_520 = new List<float>();
+    public List<float> mailpost_90 = new List<float>();
+    public List<float> mailpost_405 = new List<float>();
+    public List<float> mailpost_520 = new List<float>();
 
-    List<int> traffic_counts_5 = new List<int>();
-    List<int> traffic_counts_90 = new List<int>();
-    List<int> traffic_counts_405 = new List<int>();
-    List<int> traffic_counts_520 = new List<int>();
+    public List<int> traffic_counts_5 = new List<int>();
+    public List<int> traffic_counts_90 = new List<int>();
+    public List<int> traffic_counts_405 = new List<int>();
+    public List<int> traffic_counts_520 = new List<int>();
 
-    List<List<int>> lanes_number_5 = new List<List<int>>();
-    List<List<int>> lanes_number_90 = new List<List<int>>();
-    List<List<int>> lanes_number_405 = new List<List<int>>();
-    List<List<int>> lanes_number_520 = new List<List<int>>();
-	void Awakw(){
-		Instance = this;
+    public List<List<int>> lanes_number_5 = new List<List<int>>();
+    public List<List<int>> lanes_number_90 = new List<List<int>>();
+    public List<List<int>> lanes_number_405 = new List<List<int>>();
+    public List<List<int>> lanes_number_520 = new List<List<int>>();
+	void Awake(){
+        Instance = this;
         getFiles();
     }
     // Use this for initialization
     void Start () {
 
-	}
+    }
 
 	public void getFiles() {
         DirectoryInfo tag_Dir = new DirectoryInfo("C:\\Users\\mySab\\Documents\\SourceCode\\Project-Repository\\2018-MCM-ICM-Repository\\Practise-2017-C-Cooperate-and-navigate\\resource\\");
         FileInfo[] txt_files_info = tag_Dir.GetFiles("2017_MCM_Problem_C_Data.txt");
-
+        Debug.Log(2);
         //StreamReader temp_strReader;
         StreamReader temp_headReader;
-        Debug.Log(txt_files_info.Length);
         string temp_line;
         FileInfo temp = txt_files_info[0];
         temp_headReader = temp.OpenText();

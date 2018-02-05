@@ -285,7 +285,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\DataAnalzyer.cs" />
+    <Compile Include="Assets\Scripts\DataAnalyzer.cs" />
     <Compile Include="Assets\Scripts\DataParams.cs" />
     <Compile Include="Assets\Scripts\DistanceDetector.cs" />
     <Compile Include="Assets\Scripts\MilepostDetector.cs" />

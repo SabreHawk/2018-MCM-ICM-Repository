@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TrafficManager : MonoBehaviour {
+public class TrafficManager: MonoBehaviour {
 	public GameObject milepost_detector_model;
     private List<List<MilepostDetector>> milepost_detector_list_5 = new List<List<MilepostDetector>>();
     private List<List<MilepostDetector>> milepost_detector_list_90 = new List<List<MilepostDetector>>();
@@ -24,11 +24,11 @@ public class TrafficManager : MonoBehaviour {
 	}
 
 	void init_milepost_detector_5(){
-        Debug.Log(DataAnalzyer.Instance.mailpost_5.Count);
-        for (int i = 0; i < DataAnalzyer.Instance.mailpost_5.Count; ++i) {
+        Debug.Log(DataAnalyzer.Instance.mailpost_5.Count);
+        for (int i = 0; i < DataAnalyzer.Instance.mailpost_5.Count; ++i) {
             List<MilepostDetector> tmp_list = new List<MilepostDetector>();
-            for (int j = 0; j < DataAnalzyer.Instance.mailpost_5.Count; ++j) {
-                GameObject tmp_milepost = Instantiate(milepost_detector_model, new Vector3(j * RoadParams.road_width, DataAnalzyer.Instance.mailpost_5[i], 0), Quaternion.identity);
+            for (int j = 0; j < DataAnalyzer.Instance.lanes_number_5[i][0]; ++j) {
+                GameObject tmp_milepost = Instantiate(milepost_detector_model, new Vector3((j-1) * RoadParams.road_width, DataAnalyzer.Instance.mailpost_5[i] * GeneralParams.scale * RoadParams.mile2feet - RoadParams.road_5_start_milespost, 0), Quaternion.identity);
                 tmp_milepost.transform.SetParent(GameObject.Find("Traffic_Flow").transform);
                 tmp_list.Add(tmp_milepost.GetComponent<MilepostDetector>());
             }
