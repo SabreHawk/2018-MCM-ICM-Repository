@@ -31,7 +31,6 @@ public class DataAnalyzer: MonoBehaviour {
 	public void getFiles() {
         DirectoryInfo tag_Dir = new DirectoryInfo("C:\\Users\\mySab\\Documents\\SourceCode\\Project-Repository\\2018-MCM-ICM-Repository\\Practise-2017-C-Cooperate-and-navigate\\resource\\");
         FileInfo[] txt_files_info = tag_Dir.GetFiles("2017_MCM_Problem_C_Data.txt");
-        Debug.Log(2);
         //StreamReader temp_strReader;
         StreamReader temp_headReader;
         string temp_line;

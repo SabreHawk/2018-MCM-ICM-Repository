@@ -1,5 +1,6 @@
 ﻿public class GeneralParams{
-    public static float scale = 0.0001f;
+    public static float scale = 0.1f;
+    public static float interval_time = 1f;
 }
 public class RoadParams{
     public static float meter2feet = 5280f / 1609.344f;
@@ -13,11 +14,12 @@ public class RoadParams{
 }
 
 public class CarParams{
+    public static float min_safe_time = 3f;
+    public static float max_safe_time = 5f;
     public static float car_witdh = 5f * GeneralParams.scale;
     public static float car_length = 9.84252f * GeneralParams.scale;
-	public static float min_safe_time = 3f;
-	public static float max_safe_time = 5f;
 	public static float max_car_velocity = 60f * GeneralParams.scale;
 	public static float initial_car_velocity = 50f * GeneralParams.scale;
+    public static float init_car_probability_denominator = 24 * 60 * 60 / GeneralParams.interval_time;
 }
 

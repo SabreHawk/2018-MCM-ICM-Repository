@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class NormalCarController : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
+    public Rigidbody2D car_rigidbody;
+
+
 	
 	// Update is called once per frame
 	void Update () {
 		
 	}
+
+    public void set_velocity(float _v) {
+        Vector2 tmp_velocity = new Vector2(0, _v);
+        car_rigidbody.velocity = tmp_velocity;
+    }
 }
