@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using UnityEngine;
 public class DataAnalzyer{
 	public static DataAnalzyer Instance;
     public List<float> mailpost_5 = new List<float>();
@@ -18,25 +19,25 @@ public class DataAnalzyer{
     List<List<int>> lanes_number_520 = new List<List<int>>();
 	void Awakw(){
 		Instance = this;
-	}
+        getFiles();
+    }
     // Use this for initialization
     void Start () {
-		getFiles ();
+
 	}
 
 	public void getFiles() {
-        DirectoryInfo tag_Dir = new DirectoryInfo("D:\\github\\2018-MCM-ICM-Repository\\Practise-2017-C-Cooperate-and-navigate\\resource\\");
+        DirectoryInfo tag_Dir = new DirectoryInfo("C:\\Users\\mySab\\Documents\\SourceCode\\Project-Repository\\2018-MCM-ICM-Repository\\Practise-2017-C-Cooperate-and-navigate\\resource\\");
         FileInfo[] txt_files_info = tag_Dir.GetFiles("2017_MCM_Problem_C_Data.txt");
 
         //StreamReader temp_strReader;
         StreamReader temp_headReader;
-
+        Debug.Log(txt_files_info.Length);
         string temp_line;
         FileInfo temp = txt_files_info[0];
         temp_headReader = temp.OpenText();
-
         while ((temp_line = temp_headReader.ReadLine()) != null) {
-            //Debug.Log (temp_line);
+
             string[] sArray = temp_line.Split(',');
             switch (sArray[0]) {
                 case "5":

@@ -88,6 +88,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaDirect: 0.5
     m_PVRFilteringAtrousPositionSigmaIndirect: 2
     m_PVRFilteringAtrousPositionSigmaAO: 1
+    m_ShowResolutionOverlay: 1
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -148,6 +149,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 204318391}
+  - component: {fileID: 204318392}
   m_Layer: 0
   m_Name: Milepost_Detector
   m_TagString: Untagged
@@ -168,6 +170,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &204318392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 204318390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb3058900a0264f4b897aa2b4b7288a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  milepost_index: 0
+  lane_index: 0
 --- !u!1 &799486205
 GameObject:
   m_ObjectHideFlags: 0
@@ -500,6 +515,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 137516b66eb8a4607a351fb7cfa4d50a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  milepost_detector_model: {fileID: 204318390}
 --- !u!1 &1656442874
 GameObject:
   m_ObjectHideFlags: 0
