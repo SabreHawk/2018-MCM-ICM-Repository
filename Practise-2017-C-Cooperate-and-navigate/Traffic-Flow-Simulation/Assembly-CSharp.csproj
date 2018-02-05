@@ -51,9 +51,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\DataAnalzyer.cs" />
      <Compile Include="Assets\Scripts\DataParams.cs" />
      <Compile Include="Assets\Scripts\DistanceDetector.cs" />
-     <Compile Include="Assets\Scripts\NewBehaviourScript.cs" />
+     <Compile Include="Assets\Scripts\MilepostDetector.cs" />
      <Compile Include="Assets\Scripts\NormalCarController.cs" />
      <Compile Include="Assets\Scripts\TrafficManager.cs" />
  <Reference Include="UnityEngine.UI">

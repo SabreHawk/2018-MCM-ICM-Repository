@@ -5,12 +5,14 @@
     public static float road_len_90 = (25.37f - 1.94f) * mile2feet;
     public static float road_len_405 = (30.32f - 0f) * mile2feet;
     public static float road_len_520 = (12.83f - 0f) * mile2feet;
-
+	public static float road_width = 12f;
 
 }
 
 public class CarParams{
 	public static float min_safe_time = 3f;
 	public static float max_safe_time = 5f;
+	public static float max_car_velocity = 60f;
+	public static float initial_car_velocity = 50f;
 }
 
