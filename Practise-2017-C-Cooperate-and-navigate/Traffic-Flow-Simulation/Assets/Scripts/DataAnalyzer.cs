@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class DataAnalyzer: MonoBehaviour {
     public static DataAnalyzer Instance;
-    public List<float> mailpost_5 = new List<float>();
-    public List<float> mailpost_90 = new List<float>();
-    public List<float> mailpost_405 = new List<float>();
-    public List<float> mailpost_520 = new List<float>();
+    public List<float> milepost_5 = new List<float>();
+    public List<float> milepost_90 = new List<float>();
+    public List<float> milepost_405 = new List<float>();
+    public List<float> milepost_520 = new List<float>();
 
     public List<int> traffic_counts_5 = new List<int>();
     public List<int> traffic_counts_90 = new List<int>();
@@ -42,10 +42,10 @@ public class DataAnalyzer: MonoBehaviour {
             switch (sArray[0]) {
                 case "5":
                     if (sArray.Length >= 8 && sArray[7] == "-1") {
-                        mailpost_5.Add(float.Parse(sArray[1]));
-                        mailpost_5.Add(float.Parse(sArray[2]));
+                        milepost_5.Add(float.Parse(sArray[1]));
+                        milepost_5.Add(float.Parse(sArray[2]));
                     } else {
-                        mailpost_5.Add(float.Parse(sArray[1]));
+                        milepost_5.Add(float.Parse(sArray[1]));
                     }
                     traffic_counts_5.Add(int.Parse(sArray[3]));
                     List<int> temp_list1 = new List<int>();
@@ -55,42 +55,42 @@ public class DataAnalyzer: MonoBehaviour {
                     break;
                 case "90":
                     if (sArray.Length >= 8 && sArray[7] == "-1") {
-                        mailpost_90.Add(float.Parse(sArray[1]));
-                        mailpost_90.Add(float.Parse(sArray[2]));
+                        milepost_90.Add(float.Parse(sArray[1]));
+                        milepost_90.Add(float.Parse(sArray[2]));
                     } else {
-                        mailpost_90.Add(float.Parse(sArray[1]));
+                        milepost_90.Add(float.Parse(sArray[1]));
                     }
                     traffic_counts_90.Add(int.Parse(sArray[3]));
                     List<int> temp_list2 = new List<int>();
                     temp_list2.Add(int.Parse(sArray[5]));
                     temp_list2.Add(int.Parse(sArray[6]));
-                    lanes_number_5.Add(temp_list2);
+                    lanes_number_90.Add(temp_list2);
                     break;
                 case "405":
                     if (sArray.Length >= 8 && sArray[7] == "-1") {
-                        mailpost_405.Add(float.Parse(sArray[1]));
-                        mailpost_405.Add(float.Parse(sArray[2]));
+                        milepost_405.Add(float.Parse(sArray[1]));
+                        milepost_405.Add(float.Parse(sArray[2]));
                     } else {
-                        mailpost_405.Add(float.Parse(sArray[1]));
+                        milepost_405.Add(float.Parse(sArray[1]));
                     }
                     traffic_counts_405.Add(int.Parse(sArray[3]));
                     List<int> temp_list3 = new List<int>();
                     temp_list3.Add(int.Parse(sArray[5]));
                     temp_list3.Add(int.Parse(sArray[6]));
-                    lanes_number_5.Add(temp_list3);
+                    lanes_number_405.Add(temp_list3);
                     break;
                 case "520":
                     if (sArray.Length >= 8 && sArray[7] == "-1") {
-                        mailpost_520.Add(float.Parse(sArray[1]));
-                        mailpost_520.Add(float.Parse(sArray[2]));
+                        milepost_520.Add(float.Parse(sArray[1]));
+                        milepost_520.Add(float.Parse(sArray[2]));
                     } else {
-                        mailpost_520.Add(float.Parse(sArray[1]));
+                        milepost_520.Add(float.Parse(sArray[1]));
                     }
                     traffic_counts_520.Add(int.Parse(sArray[3]));
                     List<int> temp_list4 = new List<int>();
                     temp_list4.Add(int.Parse(sArray[5]));
                     temp_list4.Add(int.Parse(sArray[6]));
-                    lanes_number_5.Add(temp_list4);
+                    lanes_number_520.Add(temp_list4);
                     break;
             }
         }

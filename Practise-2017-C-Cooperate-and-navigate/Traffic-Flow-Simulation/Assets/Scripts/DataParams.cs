@@ -11,6 +11,7 @@ public class RoadParams{
     public static float road_len_520 = (12.83f - 0f) * mile2feet * GeneralParams.scale;
 	public static float road_width = 12f * GeneralParams.scale;
     public static float road_5_start_milespost = 100.93f * mile2feet * GeneralParams.scale;
+    public static float road_405_start_milespost = 0f;
 }
 
 public class CarParams{
