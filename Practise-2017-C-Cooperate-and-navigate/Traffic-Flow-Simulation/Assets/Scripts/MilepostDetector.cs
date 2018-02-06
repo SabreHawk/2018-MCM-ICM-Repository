@@ -39,7 +39,7 @@ public class MilepostDetector : MonoBehaviour {
 
     private void init_nor_car() {
         GameObject tmp_car = Instantiate(normal_car_model, this.transform.position,Quaternion.identity);
-        tmp_car.GetComponent<NormalCarController>().set_velocity(3);
+        tmp_car.GetComponent<NormalCarController>().set_velocity(3f);
         tmp_car.transform.SetParent(GameObject.Find("Traffic_Flow").transform);
     }
     private void init_sef_car() {
