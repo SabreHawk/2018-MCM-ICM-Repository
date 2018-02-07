@@ -152,6 +152,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 114928639575244796, guid: e638633e60381f24482babe8cd28f35e,
+        type: 2}
+      propertyPath: normal_car_ratio
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e638633e60381f24482babe8cd28f35e, type: 2}
   m_IsPrefabParent: 0

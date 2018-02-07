@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TrafficManager: MonoBehaviour {
-    public TrafficManager Instance;
+    public static TrafficManager Instance;
 	public GameObject milepost_detector_model;
     private List<List<MilepostDetector>> milepost_detector_list_5 = new List<List<MilepostDetector>>();
     private List<List<MilepostDetector>> milepost_detector_list_90 = new List<List<MilepostDetector>>();
@@ -11,14 +11,23 @@ public class TrafficManager: MonoBehaviour {
     private List<List<MilepostDetector>> milepost_detector_list_520 = new List<List<MilepostDetector>>();
     public float simulation_timer;
     public float game_timer = 0;
-    public int car_num;
+    public int normal_car_num;
+    public int self_car_num;
+    public float normal_car_ratio = 0.3f;
+    public List<GameObject> car_list = new List<GameObject>();
+    public float total_velocity;
+    public float average_velocity;
+    public float min_velocity = 100;
+    public float new_enter_car_ratio;
     // Use this for initialization
     void Start () {
         Debug.Log("Start Initiate Milepost Detector No.5");
-        car_num = 0;
+        normal_car_num = 0;
+        self_car_num = 0;
         Instance = this;
         InitEnterRoadDetector();
-        InitFollowingRoadDetector(3);
+        InitFollowingRoadDetector(2);
+        min_velocity = 100;
     }
 
     int temp = 0;
@@ -31,7 +40,7 @@ public class TrafficManager: MonoBehaviour {
             simulation_timer = 0;
             if (temp != (int)Mathf.Round(game_timer / 60) % 5) {
                 if (temp == 0) {
-                    Debug.Log(car_num);
+                    //Debug.Log(car_num);
                     Debug.Log(game_timer / 60);
                 }
             }
@@ -39,6 +48,24 @@ public class TrafficManager: MonoBehaviour {
             //Debug.Log(car_num);
             //Debug.Log(game_timer / 60);
 
+        }
+        total_velocity = 0;
+        int tmp_car_num = 0;
+        foreach (GameObject tmp in car_list) {
+            if(tmp != null) {
+                total_velocity += tmp.GetComponent<Rigidbody2D>().velocity.magnitude;
+                tmp_car_num++;
+            }
+
+        }
+        average_velocity = total_velocity / tmp_car_num;
+        if(average_velocity < min_velocity) {
+            min_velocity = average_velocity;
+        }
+        if(game_timer/10 > 1) {
+            game_timer = 0;
+            average_velocity = 0;
+            min_velocity = 100;
         }
     }
 
@@ -52,7 +79,7 @@ public class TrafficManager: MonoBehaviour {
                 tmp_milepost.transform.SetParent(GameObject.Find("Mileposts").transform);
                 tmp_milepost.GetComponent<MilepostDetector>().set_index(j, i);
                 //The probability of initiation of car in each lane = daily_avg_car_count / init_car_interval_time * (lane ratio of the total lanes)
-                tmp_milepost.GetComponent<MilepostDetector>().set_probability(DataAnalyzer.Instance.traffic_counts_405[i] / CarParams.init_car_probability_denominator * (DataAnalyzer.Instance.lanes_number_405[i][0] / tmp_lane_num));
+                tmp_milepost.GetComponent<MilepostDetector>().set_probability(2 * DataAnalyzer.Instance.traffic_counts_405[i] / CarParams.init_car_probability_denominator * (DataAnalyzer.Instance.lanes_number_405[i][0] / tmp_lane_num));
                 tmp_list.Add(tmp_milepost.GetComponent<MilepostDetector>());
             }
             milepost_detector_list_405.Add(tmp_list);
@@ -70,7 +97,7 @@ public class TrafficManager: MonoBehaviour {
                 tmp_milepost.transform.SetParent(GameObject.Find("Mileposts").transform);
                 tmp_milepost.GetComponent<MilepostDetector>().set_index(j, i);
                 //The probability of initiation of car in each lane = daily_avg_car_count / init_car_interval_time * (lane ratio of the total lanes)
-                tmp_milepost.GetComponent<MilepostDetector>().set_probability(DataAnalyzer.Instance.traffic_counts_405[i] / CarParams.init_car_probability_denominator * (DataAnalyzer.Instance.lanes_number_405[i][0] / tmp_lane_num * 0.1f));
+                tmp_milepost.GetComponent<MilepostDetector>().set_probability(DataAnalyzer.Instance.traffic_counts_405[i] / CarParams.init_car_probability_denominator * (DataAnalyzer.Instance.lanes_number_405[i][0] / tmp_lane_num*0.3f ));
                 tmp_list.Add(tmp_milepost.GetComponent<MilepostDetector>());
             }
             milepost_detector_list_405.Add(tmp_list);
@@ -80,8 +107,13 @@ public class TrafficManager: MonoBehaviour {
         foreach (List<MilepostDetector> tmp_list in milepost_detector_list_405) {
             foreach(MilepostDetector tmp_mp_detector in tmp_list) {     
                 if (Random.Range(0,100) <= tmp_mp_detector.init_car_probability*100) {
-                    tmp_mp_detector.add_normal_car(0);
-                    car_num++;
+                    if (Random.Range(0, 100) <= normal_car_ratio * 100) {
+                        tmp_mp_detector.add_car(0);
+                        normal_car_num++;
+                    } else {
+                        tmp_mp_detector.add_car(1);
+                        self_car_num++;
+                    }
                 }
 
             }
@@ -92,8 +124,8 @@ public class TrafficManager: MonoBehaviour {
             foreach (MilepostDetector tmp_mp_detector in tmp_list) {
                 if (Random.Range(0, 100) <= tmp_mp_detector.init_car_probability * 100) {
 
-                    tmp_mp_detector.add_normal_car(0);
-                    car_num++;
+                    tmp_mp_detector.add_car(0);
+                    //car_num++;
                 }
 
             }
@@ -108,7 +140,7 @@ public class TrafficManager: MonoBehaviour {
                 tmp_milepost.transform.SetParent(GameObject.Find("Mileposts").transform);
                 tmp_milepost.GetComponent<MilepostDetector>().set_index(j, i);
                 //The probability of initiation of car in each lane = daily_avg_car_count / init_car_interval_time * (lane ratio of the total lanes)
-                tmp_milepost.GetComponent<MilepostDetector>().set_probability(DataAnalyzer.Instance.traffic_counts_5[i] /  CarParams.init_car_probability_denominator *(DataAnalyzer.Instance.lanes_number_405[i][0] / tmp_lane_num *0.1f));
+                tmp_milepost.GetComponent<MilepostDetector>().set_probability(DataAnalyzer.Instance.traffic_counts_5[i] /  CarParams.init_car_probability_denominator *(DataAnalyzer.Instance.lanes_number_405[i][0] / tmp_lane_num * new_enter_car_ratio));
                 tmp_list.Add(tmp_milepost.GetComponent<MilepostDetector>());
             }
             milepost_detector_list_5.Add(tmp_list);

@@ -101,9 +101,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   normal_car_model: {fileID: 1787543698037292, guid: f8766b0ba45fe8946869adf714cb1a42,
     type: 2}
+  self_car_model: {fileID: 1787543698037292, guid: 044a90f192b858a4ca3061f8c55323b6,
+    type: 2}
   milepost_index: 0
   lane_index: 0
   init_car_probability: 0
+  SafeAeraCarNum: 0
+  passCarNum: 0
+  initCarNum: 0
 --- !u!212 &212363846349883482
 SpriteRenderer:
   m_ObjectHideFlags: 1

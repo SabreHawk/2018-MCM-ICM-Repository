@@ -19,8 +19,11 @@ public class CarParams{
     public static float max_safe_time = 5f;
     public static float car_witdh = 5f * GeneralParams.scale;
     public static float car_length = 9.84252f * GeneralParams.scale;
-	public static float max_car_velocity = 60f * GeneralParams.scale;
+    public static float max_car_velocity = 60000 / 60 / 60f * RoadParams.meter2feet * GeneralParams.scale;
 	public static float initial_car_velocity = 50f * GeneralParams.scale;
     public static float init_car_probability_denominator = 24 * 60 * 60 / GeneralParams.interval_time;
 }
 
+class Tag {
+    public static string normal_car = "normal_car";
+}
