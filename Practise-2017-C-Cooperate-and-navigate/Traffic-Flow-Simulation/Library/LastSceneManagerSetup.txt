@@ -1,4 +1,0 @@
-sceneSetups:
-- path: Assets/Scenes/detial_simulation.unity
-  isLoaded: 1
-  isActive: 1
